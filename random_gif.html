@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>bedard's random gif of the day</title>
+  <meta name="viewport" content="width=device-width">
+</head>
+<body style="background-size: cover; background-repeat: no-repeat;">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      request = new XMLHttpRequest;
+      request.open("GET", "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC", true);
+
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400){
+          data = JSON.parse(request.responseText).data.image_url;
+          console.log(data);
+          document.body.style.backgroundImage = "url('" +data+ "')";
+          // document.body.style.backgroundSize = "cover";
+        } else {
+          console.log("reached giphy, but API returned an error");
+         }
+      };
+
+      request.onerror = function() {
+        console.log("connection error");
+      };
+
+      request.send();
+    });
+  </script>
+  <div id="giphy" style="width: 400px; height: 300px;"></div>
+</body>
+</html>
