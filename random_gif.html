@@ -24,7 +24,10 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-
+      if(Math.floor(Math.random() * 2)) {
+        document.body.style.backgroundImage = "url(http://i.imgur.com/V1ne9H8.gif)";
+        return;
+      }
       request = new XMLHttpRequest;
       request.open("GET", "https://api.giphy.com/v1/gifs/random?tag=fail&api_key=dc6zaTOxFJmzC", true);
 
